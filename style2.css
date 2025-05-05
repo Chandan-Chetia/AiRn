@@ -1,0 +1,356 @@
+:root {
+    /* Base Colors */
+    --primary: #2563eb;       /* Vibrant blue */
+    --primary-light: #3b82f6; /* Lighter blue */
+    --primary-dark: #1d4ed8;  /* Darker blue */
+    --secondary: #00b4d8;     /* Teal/cyan */
+    --secondary-dark: #0096c7; /* Darker teal */
+    --accent: #7c3aed;        /* Purple */
+    --accent-light: #8b5cf6;  /* Lighter purple */
+    
+    /* Text Colors */
+    --text-on-primary: #3077d4;
+    --text-primary: #3077d4;
+    --text-secondary: #9ca3af;
+    --text-dark: #1f2937;
+    
+    /* Background Colors */
+    --bg-color: #0b111f;      /* Dark blue-gray */
+    --card-bg: #1e293b;       /* Slightly lighter blue-gray */
+    --section-bg: #1e293b;     /* Matching card bg */
+    --footer-bg: #0b111f;     /* Very dark blue */
+    
+    /* UI Colors */
+    --success: #10b981;       /* Green */
+    --error: #ef4444;         /* Red */
+    --warning: #f59e0b;       /* Amber */
+    
+    /* Effects */
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    --shadow-hover: 0 8px 30px rgba(59, 130, 246, 0.3);
+    --glow: 0 0 10px rgba(59, 130, 246, 0.5);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --transition: all 0.3s ease;
+}
+
+/* Light Mode Override - Optional */
+[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --section-bg: #f1f5f9;
+    --footer-bg: #0b111f;
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.auth-buttons .btn {
+    padding: 10px 20px;
+    color: white; /* Ensures text is white */
+    font-weight: 600; /* Makes text bold */
+    text-decoration: none; /* Removes underline */
+    border-radius: 6px; /* Rounded corners */
+}
+
+.btn.login {
+    background-color: transparent;
+    border: 2px solid white; /* White border */
+}
+
+.btn.signup {
+    background-color: #3b82f6; /* Blue background */
+    border: 2px solid #3b82f6; /* Matching border */
+}
+
+.btn.login:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slight white on hover */
+}
+
+.btn.signup:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+}
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    z-index: -1;
+    transition: var(--transition);
+    opacity: 1;
+}
+
+.btn:hover::before {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.btn.primary {
+    background-color: #3b82f6; /* Blue */
+    color: white;
+    border: 2px solid #3b82f6;
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+.btn.primary:hover {
+    background-color: #2563eb; /* Darker blue */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn.secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.btn.accent {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: var(--text-on-primary);
+}
+
+.btn.accent:hover {
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+}
+
+/* Cards */
+.card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-light);
+}
+
+/* Header */
+header {
+    background-color: var(--bg-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.logo strong {
+    color: var(--primary);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--bg-color), rgba(15, 23, 42, 0.9)),
+                url('./R1.png') center/cover no-repeat;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(76, 130, 255, 0.47), rgba(37, 100, 235, 0));
+    z-index: 0;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+/* Tool Cards */
+.tool-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition);
+}
+
+.tool-card:hover::after {
+    transform: scaleX(1);
+}
+
+/* Neon Effects for AI Vibe */
+.neon {
+    text-shadow: 0 0 5px var(--primary-light), 0 0 10px var(--primary-light);
+}
+
+.neon-accent {
+    text-shadow: 0 0 5px var(--accent-light), 0 0 10px var(--accent-light);
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+.pulsing {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .btn {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Dark/Light Mode Toggle - Optional */
+.theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--primary);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-hover);
+}
