@@ -1,155 +1,330 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
+    <meta name="color-scheme" content="light dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Maintenance Notice</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: #fff;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-        }
-        
-        .container {
-            max-width: 800px;
-            padding: 2rem;
-            position: relative;
-            z-index: 10;
-        }
-        
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: #f8f8f8;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
-        }
-        
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            color: #e6e6e6;
-        }
-        
-        .highlight {
-            color: #4cc9f0;
-            font-weight: 500;
-        }
-        
-        .signature {
-            font-style: italic;
-            margin-top: 2rem;
-            color: #f8f8f8;
-            font-size: 1.1rem;
-        }
-        
-        .cube {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            transform-style: preserve-3d;
-            animation: rotate 20s infinite linear;
-            opacity: 0.7;
-        }
-        
-        .cube:nth-child(1) {
-            top: 20%;
-            left: 10%;
-        }
-        
-        .cube:nth-child(2) {
-            bottom: 15%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-        
-        .cube:nth-child(3) {
-            top: 60%;
-            left: 25%;
-            animation-delay: 4s;
-        }
-        
-        .face {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            border: 2px solid rgba(76, 201, 240, 0.5);
-            box-shadow: 0 0 20px rgba(76, 201, 240, 0.3);
-        }
-        
-        .face-front { transform: translateZ(50px); background: rgba(76, 201, 240, 0.1); }
-        .face-back { transform: rotateY(180deg) translateZ(50px); background: rgba(76, 201, 240, 0.1); }
-        .face-right { transform: rotateY(90deg) translateZ(50px); background: rgba(76, 201, 240, 0.1); }
-        .face-left { transform: rotateY(-90deg) translateZ(50px); background: rgba(76, 201, 240, 0.1); }
-        .face-top { transform: rotateX(90deg) translateZ(50px); background: rgba(76, 201, 240, 0.1); }
-        .face-bottom { transform: rotateX(-90deg) translateZ(50px); background: rgba(76, 201, 240, 0.1); }
-        
-        @keyframes rotate {
-            from { transform: rotateX(0) rotateY(0); }
-            to { transform: rotateX(360deg) rotateY(360deg); }
-        }
-        
-        .contact {
-            margin-top: 2rem;
-            font-size: 1rem;
-            color: #aaa;
-        }
-    </style>
+    <title>Airn - Premium AI Tools & Tutorials</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
 </head>
 <body>
-    <!-- 3D Cubes -->
-    <div class="cube">
-        <div class="face face-front"></div>
-        <div class="face face-back"></div>
-        <div class="face face-right"></div>
-        <div class="face face-left"></div>
-        <div class="face face-top"></div>
-        <div class="face face-bottom"></div>
-    </div>
-    
-    <div class="cube">
-        <div class="face face-front"></div>
-        <div class="face face-back"></div>
-        <div class="face face-right"></div>
-        <div class="face face-left"></div>
-        <div class="face face-top"></div>
-        <div class="face face-bottom"></div>
-    </div>
-    
-    <div class="cube">
-        <div class="face face-front"></div>
-        <div class="face face-back"></div>
-        <div class="face face-right"></div>
-        <div class="face face-left"></div>
-        <div class="face face-top"></div>
-        <div class="face face-bottom"></div>
-    </div>
-    
-    <!-- Main Content -->
-    <div class="container">
-        <h1>🚧 Site Maintenance Notice</h1>
-        <p>We regret to inform you that this website is currently <span class="highlight">temporarily closed</span> due to essential maintenance and upgrades being performed by our development team.</p>
-        <p>This action has been taken under <span class="highlight">strict directive</span> from the development lead to ensure we can deliver an improved user experience.</p>
-        <p>We appreciate your understanding and patience during this necessary improvement period. Please check back soon for our enhanced platform.</p>
-        
-        <div class="signature">
-            <p>— Chandan<br><span style="font-size: 0.9rem;">Lead Developer</span></p>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="./airn4.jpg" width="120" height="50" class="circle-img">
+               
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#tools">AI Tools</a></li>
+                    <li><a href="#courses">Tutorials</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn login">Login</button>
+                <button class="btn signup">Sign Up</button>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        
-        <div class="contact">
-            For urgent inquiries, please contact: admin@example.com
+    </header>
+
+    <!-- Hero Section -->
+     
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Master AI Tools & Boost Your Productivity</h1>
+                <p>Discover the best AI tools and learn how to use them effectively with our free and premium tutorials.</p>
+                <div class="hero-buttons">
+                    <a href="#tools" class="btn primary">Explore Tools</a>
+                    <a href="#courses" class="btn secondary">View Tutorials</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="tools-section" id="tools">
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search tools and courses...">
+                <button id="search-button"><i class="fas fa-search"></i> Search</button>
+            </div>
+            <div class="search-results-count" id="results-count"></div>
+        </div>
+        <div class="container">
+            <h2>Popular AI Tools</h2>
+            <p class="section-subtitle">Browse our categorized collection of the best AI tools available</p>
+            
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">All</button>
+                <button class="tab-btn" data-category="ai-study">Study AI</button>
+                <button class="tab-btn" data-category="photo-editing">Photo Editing</button>
+                <button class="tab-btn" data-category="video-editing">Video Editing</button>
+                <button class="tab-btn" data-category="coding">Coding</button>
+                <button class="tab-btn premium-tab" data-category="premium">Premium Tools</button>
+            </div>
+            
+            <div class="tools-grid">
+                <!-- Free Tool 1 -->
+                <div class="tool-card" data-category="ai-study">
+                    <div class="tool-badge free">FREE</div>
+                    <img src="./ChatGPT.png" alt="ChatGPT" >
+                    <div class="tool-info">
+                        <h3>ChatGPT</h3>
+                        <p class="tool-description">Conversational AI for research and learning</p>
+                        <div class="tool-meta">
+                            <span><i class="fas fa-thumbs-up"></i> 0%</span>
+                            <span><i class="fas fa-user"></i> Beginner</span>
+                        </div>
+                        <a href="https://chat.openai.com" class="btn tool-link" target="_blank">Visit Tool</a>
+                    </div>
+                </div>
+                
+                <!-- Free Tools 2-->
+                <div class="tool-card" data-category="ai-study">
+                    <div class="tool-badge free">FREE</div>
+                    <img src="./perplexity1.webp" alt="ChatGPT">
+                    <div class="tool-info">
+                        <h3>Preplexity</h3>
+                        <p class="tool-description">Conversational AI for research and learning</p>
+                        <div class="tool-meta">
+                            <span><i class="fas fa-thumbs-up"></i> 0%</span>
+                            <span><i class="fas fa-user"></i> Beginner</span>
+                        </div>
+                        <a href="https://chat.openai.com" class="btn tool-link" target="_blank">Visit Tool</a>
+                    </div>
+                </div>
+                
+                
+                <!-- Premium Tools 1 -->
+
+                <div class="tool-card premium-tool" data-category="premium">
+                    <div class="tool-badge premium">PREMIUM</div>
+                    <img src="./midjourney.png" alt="Midjourney">
+                    <div class="tool-info">
+                        <h3>Midjourney V6</h3>
+                        <p class="tool-description">Advanced AI image generation</p>
+                        <div class="tool-meta">
+                            <span><i class="fas fa-thumbs-up"></i> 0%</span>
+                            <span><i class="fas fa-user"></i> Advanced</span>
+                        </div>
+                        <a href="https://www.midjourney.com" class="btn premium-link" target="_blank">Premium Only</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses-section" id="courses">
+        <div class="container">
+            <h2>AI Tutorials</h2>
+            <p class="section-subtitle">Learn how to effectively use AI tools with our courses</p>
+            
+            <div class="course-tabs">
+                <button class="tab-btn active" data-tab="all">All Tutorials</button>
+                <button class="tab-btn" data-tab="free">Free Tutorials</button>
+                <button class="tab-btn premium-tab" data-tab="premium">Premium Tutorials</button>
+            </div>
+            
+            <div class="courses-grid">
+                <!-- Free Course 1 -->
+                <div class="course-card free">
+                    <div class="course-badge free">FREE</div>
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI Basics">
+                    <div class="course-info">
+                        <h3>AI Fundamentals</h3>
+                        <p class="course-description">Learn the basics of artificial intelligence and how to use common AI tools</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                        </div>
+                        <button class="btn enroll">Enroll Free</button>
+                    </div>
+                </div>
+                
+                <!-- Free Course 2 -->
+                <div class="course-card free">
+                    <div class="course-badge free">FREE</div>
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="ChatGPT">
+                    <div class="course-info">
+                        <h3>ChatGPT for Beginners</h3>
+                        <p class="course-description">Master the basics of ChatGPT for productivity and learning</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                        </div>
+                        <button class="btn enroll">Enroll Free</button>
+                    </div>
+                </div>
+                
+                <!-- Premium Course 1 -->
+
+                <div class="course-card premium">
+                    <div class="course-badge premium">PREMIUM</div>
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="AI Photo Editing">
+                    <div class="course-info">
+                        <h3>Professional AI Photo Editing</h3>
+                        <p class="course-description">Master DALL-E, Midjourney, and Stable Diffusion for professional results</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                        </div>
+                        <div class="price">₹49</div>
+                        <button class="btn premium-enroll">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="./airn4.jpg" width="110" height="50" class="circle-img">
+                    </div>
+                    <p>Your premier destination for AI tools and education.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-x"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#courses">Tutorials</a></li>
+                        <li><a href="#">AI Tool Reviews</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="./">Terms of Service</a></li>
+                        <li><a href="./privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AiRn. All rights reserved. Developed by Chandan</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Login to access your AiRn account</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                    <div class="password-options">
+                        <label class="remember-me">
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="#forgot-password" class="forgot-password">Forgot password?</a>
+                    </div>
+                </div>
+                <button type="submit" class="btn primary login-btn">Login</button>
+                <div class="social-login">
+                    <p>Or login with</p>
+                    <div class="social-buttons">
+                        <button type="button" class="btn social-btn google">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                    </div>
+                </div>
+                <div class="signup-link">
+                    Don't have an account? <a href="#signup" class="switch-to-signup">Sign up</a>
+                </div>
+            </form>
         </div>
     </div>
+
+    <div class="modal" id="forgot-password-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Reset Password</h2>
+                <p>Enter your email to receive a password reset link</p>
+            </div>
+            <form id="forgot-password-form">
+                <div class="form-group">
+                    <label for="reset-email">Email</label>
+                    <input type="email" id="reset-email" placeholder="Enter your email" required>
+                </div>
+                <button type="submit" class="btn primary">Send Reset Link</button>
+                <div class="back-to-login">
+                    <a href="#login" class="switch-to-login">Back to login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="signup-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Create Your Account</h2>
+                <p>Join AiRn to access premium features</p>
+            </div>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password (min 6 chars)" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn primary signup-btn">Sign Up</button>
+                <div class="login-link">
+                    Already have an account? <a href="#login" class="switch-to-login">Log in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
