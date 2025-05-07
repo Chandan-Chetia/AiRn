@@ -48,7 +48,7 @@ body {
 }
 
 .container {
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
@@ -885,5 +885,93 @@ footer {
 
     .auth-buttons {
         gap: 8px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    /* Adjust the main container padding */
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Tighten the tools grid spacing */
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 0 -5px; /* Negative margin to compensate for card padding */
+    }
+
+    /* Adjust tool card spacing */
+    .tool-card {
+        margin: 0;
+        padding: 12px;
+    }
+
+    /* Reduce image container size */
+    .tool-card img {
+        height: 120px;
+        padding: 15px;
+    }
+
+    /* Tighten tool info spacing */
+    .tool-info {
+        padding: 12px 0 0;
+    }
+
+    /* Adjust text sizes for mobile */
+    .tool-info h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .tool-description {
+        font-size: 13px;
+        margin-bottom: 10px;
+        min-height: 50px;
+    }
+
+    /* Compact meta information */
+    .tool-meta {
+        margin-bottom: 10px;
+        font-size: 12px;
+    }
+
+    /* Smaller buttons */
+    .tool-link, .btn.enroll, .btn.premium-enroll {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Even tighter spacing for very small screens */
+    .tools-grid {
+        gap: 8px;
+    }
+
+    .tool-card {
+        padding: 10px;
+    }
+
+    .tool-card img {
+        height: 100px;
+        padding: 10px;
+    }
+
+    /* Adjust category tabs for mobile */
+    .category-tabs {
+        gap: 6px;
+        margin-bottom: 20px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tab-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+        white-space: nowrap;
     }
 }
