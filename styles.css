@@ -53,30 +53,34 @@ body {
     margin: 0 auto;
     padding: 0 20px;
 }
+
 /* Header Layout Adjustment */
 header .container {
     display: flex;
-    justify-content: space-between; /* This separates logo and nav */
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-  }
-  
-  /* Logo stays on left */
-  .logo {
-    margin-right: auto; /* Pushes everything else right */
-  }
-  
-  /* Navigation moves to right */
-  nav ul {
+}
+
+/* Logo stays on left */
+.logo {
+    margin-right: auto;
+}
+
+/* Navigation moves to right */
+nav ul {
     display: flex;
-    margin-left: auto; /* Pushes nav to right */
-    gap: 20px; /* Space between menu items */
-  }
-  
-  /* Auth buttons styling */
-  .auth-buttons {
-    margin-left: 30px; /* Space between nav and auth buttons */
-  }
+    margin-left: auto;
+    gap: 20px;
+}
+
+/* Auth buttons styling */
+.auth-buttons {
+    margin-left: 30px;
+    display: flex;
+    gap: 15px;
+}
+
 /* Header Styles */
 header {
     background-color: var(--card-bg);
@@ -141,11 +145,6 @@ nav ul li a::after {
 
 nav ul li a:hover::after {
     width: 100%;
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 15px;
 }
 
 .btn {
@@ -806,31 +805,34 @@ footer {
 }
 
 @media (max-width: 768px) {
-    /* Hide regular menu on mobile */
-    nav ul {
-      display: none;
-    }
-    
-    /* Show mobile menu button on right */
-    .mobile-menu-btn {
-      display: block;
-      margin-left: auto;
-      order: 2; /* Ensures it stays on the right */
-    }
-    
-    /* Logo stays left */
-    .logo {
-      order: 1;
-    }
-    
-    /* Auth buttons move to appear in mobile menu */
+    /* Keep auth buttons visible */
     .auth-buttons {
-      display: none;
+        display: flex;
+        margin-left: auto;
+        margin-right: 15px;
     }
-  }
 
+    /* Adjust tool card sizing */
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
 
-@media (max-width: 768px) {
+    .tool-card {
+        min-width: 0;
+    }
+
+    /* Mobile menu button positioning */
+    .mobile-menu-btn {
+        display: block;
+        order: 3;
+    }
+
+    /* Hide regular menu */
+    nav ul {
+        display: none;
+    }
+    
     .hero h1 {
         font-size: 36px;
     }
@@ -844,7 +846,7 @@ footer {
         width: 100%;
     }
     
-    .tools-grid, .courses-grid {
+    .courses-grid {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     }
 }
@@ -873,5 +875,15 @@ footer {
     
     .social-buttons {
         flex-direction: column;
+    }
+
+    /* Smaller buttons on very small screens */
+    .btn.login, .btn.signup {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .auth-buttons {
+        gap: 8px;
     }
 }
