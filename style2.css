@@ -238,7 +238,7 @@ header {
     position: relative;
     padding: 5rem 0;
     background: linear-gradient(135deg, var(--bg-color), rgba(15, 23, 42, 0.9)),
-                url('./R1.png') center/cover no-repeat;
+                url('./images/R1.png') center/cover no-repeat;
 }
 
 .hero::before {

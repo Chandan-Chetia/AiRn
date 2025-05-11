@@ -1,11 +1,11 @@
-// Firebase configuration - REPLACE WITH YOUR ACTUAL CONFIG
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
-    authDomain: "airn-242d6.firebaseapp.com",
-    projectId: "airn-242d6",
-    storageBucket: "airn-242d6.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    authDomain: "Airn.firebaseapp.com",
+    projectId: "AiRn",
+    storageBucket: "AiRn.appspot.com",
+    messagingSenderId: "1234567890",
+    appId: "1:1234567890:web:abcdef1234567890"
 };
 
 // Initialize Firebase
@@ -28,13 +28,12 @@ const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const mainNav = document.querySelector('.main-nav ul');
 
 // Mobile Menu Toggle
-mobileMenuBtn?.addEventListener('click', () => {
-    mainNav?.classList.toggle('show');
+mobileMenuBtn.addEventListener('click', () => {
+    mainNav.classList.toggle('show');
 });
 
 // Modal Functions
 function openModal(modal) {
-    if (!modal) return;
     modal.style.display = 'block';
     setTimeout(() => {
         modal.classList.add('show');
@@ -43,7 +42,6 @@ function openModal(modal) {
 }
 
 function closeModal(modal) {
-    if (!modal) return;
     modal.classList.remove('show');
     setTimeout(() => {
         modal.style.display = 'none';
@@ -52,8 +50,8 @@ function closeModal(modal) {
 }
 
 // Event Listeners for Modals
-loginBtn?.addEventListener('click', () => openModal(loginModal));
-signupBtn?.addEventListener('click', () => openModal(signupModal));
+loginBtn.addEventListener('click', () => openModal(loginModal));
+signupBtn.addEventListener('click', () => openModal(signupModal));
 
 closeModalButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -107,16 +105,13 @@ function showError(input, message) {
     const formGroup = input.parentElement;
     const error = formGroup.querySelector('.error-message') || document.createElement('div');
     error.className = 'error-message';
-    error.style.color = '#ef4444';
-    error.style.fontSize = '0.875rem';
-    error.style.marginTop = '0.25rem';
     error.textContent = message;
     
     if (!formGroup.querySelector('.error-message')) {
         formGroup.appendChild(error);
     }
     
-    input.style.borderColor = '#ef4444';
+    input.style.borderColor = '#ff7675';
 }
 
 // Clear Error Function
@@ -177,20 +172,37 @@ document.getElementById('login-form')?.addEventListener('submit', async (e) => {
         const user = userCredential.user;
         
         // Update UI
-        updateAuthUI(user);
+        document.querySelector('.auth-buttons').innerHTML = `
+            <div class="user-dropdown">
+                <button class="btn user-btn">
+                    <i class="fas fa-user-circle"></i> ${user.email}
+                </button>
+                <div class="dropdown-content">
+                    <a href="#profile">Profile</a>
+                    <a href="#settings">Settings</a>
+                    <a href="#" id="logout-btn">Logout</a>
+                </div>
+            </div>
+        `;
+        
+        // Add logout functionality
+        document.getElementById('logout-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.signOut().then(() => {
+                window.location.reload();
+            });
+        });
         
         closeModal(loginModal);
-        showToast('Login successful!', 'success');
+        alert('Login successful!');
     } catch (error) {
         let errorMessage = 'Login failed. Please try again.';
         if (error.code === 'auth/user-not-found') {
             errorMessage = 'No user found with this email.';
         } else if (error.code === 'auth/wrong-password') {
             errorMessage = 'Incorrect password.';
-        } else if (error.code === 'auth/too-many-requests') {
-            errorMessage = 'Account temporarily disabled due to too many failed attempts.';
         }
-        showToast(errorMessage, 'error');
+        alert(errorMessage);
     } finally {
         setLoading(loginButton, false);
     }
@@ -257,20 +269,37 @@ document.getElementById('signup-form')?.addEventListener('submit', async (e) => 
         });
         
         // Update UI
-        updateAuthUI(user);
+        document.querySelector('.auth-buttons').innerHTML = `
+            <div class="user-dropdown">
+                <button class="btn user-btn">
+                    <i class="fas fa-user-circle"></i> ${user.email}
+                </button>
+                <div class="dropdown-content">
+                    <a href="#profile">Profile</a>
+                    <a href="#settings">Settings</a>
+                    <a href="#" id="logout-btn">Logout</a>
+                </div>
+            </div>
+        `;
+        
+        // Add logout functionality
+        document.getElementById('logout-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.signOut().then(() => {
+                window.location.reload();
+            });
+        });
         
         closeModal(signupModal);
-        showToast('Signup successful! Welcome to AI Hub Pro!', 'success');
+        alert('Signup successful! Welcome to AI Hub Pro!');
     } catch (error) {
         let errorMessage = 'Signup failed. Please try again.';
         if (error.code === 'auth/email-already-in-use') {
             errorMessage = 'Email already in use. Please login instead.';
         } else if (error.code === 'auth/weak-password') {
             errorMessage = 'Password should be at least 6 characters';
-        } else if (error.code === 'auth/invalid-email') {
-            errorMessage = 'Please enter a valid email address';
         }
-        showToast(errorMessage, 'error');
+        alert(errorMessage);
     } finally {
         setLoading(signupButton, false);
     }
@@ -296,14 +325,10 @@ document.getElementById('forgot-password-form')?.addEventListener('submit', asyn
     try {
         // Send password reset email
         await auth.sendPasswordResetEmail(email);
-        showToast('Password reset email sent! Please check your inbox.', 'success');
+        alert('Password reset email sent! Please check your inbox.');
         closeModal(forgotPasswordModal);
     } catch (error) {
-        let errorMessage = 'Error sending reset email. Please try again.';
-        if (error.code === 'auth/user-not-found') {
-            errorMessage = 'No user found with this email.';
-        }
-        showToast(errorMessage, 'error');
+        alert('Error sending reset email. Please try again.');
     } finally {
         setLoading(resetButton, false);
     }
@@ -312,12 +337,6 @@ document.getElementById('forgot-password-form')?.addEventListener('submit', asyn
 // Social Login Functions
 document.querySelector('.social-btn.google')?.addEventListener('click', async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    const loginButton = document.querySelector('.social-btn.google');
-    
-    // Save original button text
-    loginButton.dataset.originalText = loginButton.innerHTML;
-    setLoading(loginButton, true);
-    
     try {
         const result = await auth.signInWithPopup(provider);
         const user = result.user;
@@ -334,112 +353,148 @@ document.querySelector('.social-btn.google')?.addEventListener('click', async ()
         }
         
         // Update UI
-        updateAuthUI(user);
+        document.querySelector('.auth-buttons').innerHTML = `
+            <div class="user-dropdown">
+                <button class="btn user-btn">
+                    <i class="fas fa-user-circle"></i> ${user.email}
+                </button>
+                <div class="dropdown-content">
+                    <a href="#profile">Profile</a>
+                    <a href="#settings">Settings</a>
+                    <a href="#" id="logout-btn">Logout</a>
+                </div>
+            </div>
+        `;
+        
+        // Add logout functionality
+        document.getElementById('logout-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.signOut().then(() => {
+                window.location.reload();
+            });
+        });
         
         closeModal(loginModal);
-        showToast('Login successful with Google!', 'success');
+        alert('Login successful with Google!');
     } catch (error) {
-        showToast('Google login failed. Please try again.', 'error');
-    } finally {
-        setLoading(loginButton, false);
+        alert('Google login failed. Please try again.');
     }
 });
 
-// Update Authentication UI
-function updateAuthUI(user) {
-    if (!user) {
-        // User is signed out
-        document.querySelector('.auth-buttons').innerHTML = `
-            <button class="btn login">Login</button>
-            <button class="btn signup">Sign Up</button>
-        `;
-        
-        // Reattach event listeners
-        document.querySelector('.btn.login')?.addEventListener('click', () => openModal(loginModal));
-        document.querySelector('.btn.signup')?.addEventListener('click', () => openModal(signupModal));
-        return;
-    }
-    
-    // User is signed in
-    const displayName = user.displayName || user.email.split('@')[0];
-    
-    document.querySelector('.auth-buttons').innerHTML = `
-        <div class="user-dropdown">
-            <button class="btn user-btn">
-                <i class="fas fa-user-circle"></i> ${displayName}
-            </button>
-            <div class="dropdown-content">
-                <a href="#profile">Profile</a>
-                <a href="#settings">Settings</a>
-                <a href="#" id="logout-btn">Logout</a>
-            </div>
-        </div>
-    `;
-    
-    // Add logout functionality
-    document.getElementById('logout-btn')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        auth.signOut();
-    });
-}
-
-// Toast Notification
-function showToast(message, type = 'info') {
-    const toast = document.createElement('div');
-    toast.className = `toast toast-${type}`;
-    toast.textContent = message;
-    
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-        toast.classList.add('show');
-    }, 10);
-    
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => {
-            toast.remove();
-        }, 300);
-    }, 3000);
-}
-
 // Check Auth State
 auth.onAuthStateChanged((user) => {
-    updateAuthUI(user);
+    if (user) {
+        // User is signed in
+        document.querySelector('.auth-buttons').innerHTML = `
+            <div class="user-dropdown">
+                <button class="btn user-btn">
+                    <i class="fas fa-user-circle"></i> ${user.email}
+                </button>
+                <div class="dropdown-content">
+                    <a href="#profile">Profile</a>
+                    <a href="#settings">Settings</a>
+                    <a href="#" id="logout-btn">Logout</a>
+                </div>
+            </div>
+        `;
+        
+        // Add logout functionality
+        document.getElementById('logout-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.signOut().then(() => {
+                window.location.reload();
+            });
+        });
+    }
+});
+
+// Search Functionality
+document.getElementById('search-button')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const toolCards = document.querySelectorAll('.tool-card');
+    const courseCards = document.querySelectorAll('.course-card');
+    let visibleCount = 0;
+
+    if (searchTerm.trim() === '') {
+        toolCards.forEach(card => card.style.display = '');
+        courseCards.forEach(card => card.style.display = '');
+        document.getElementById('results-count').textContent = '';
+        return;
+    }
+
+    toolCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('.tool-description').textContent.toLowerCase();
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            card.style.display = '';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    courseCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('.course-description').textContent.toLowerCase();
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            card.style.display = '';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    document.getElementById('results-count').textContent = `${visibleCount} results found`;
+});
+
+// Tab Filtering
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const category = btn.dataset.category || btn.dataset.tab;
+        const isToolTab = btn.dataset.category !== undefined;
+        
+        // Update active tab
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        
+        if (isToolTab) {
+            // Filter tools
+            const tools = document.querySelectorAll('.tool-card');
+            tools.forEach(tool => {
+                if (category === 'all' || tool.dataset.category === category) {
+                    tool.style.display = '';
+                } else {
+                    tool.style.display = 'none';
+                }
+            });
+        } else {
+            // Filter courses
+            const courses = document.querySelectorAll('.course-card');
+            courses.forEach(course => {
+                if (category === 'all' || 
+                    (category === 'free' && course.classList.contains('free')) || 
+                    (category === 'premium' && course.classList.contains('premium'))) {
+                    course.style.display = '';
+                } else {
+                    course.style.display = 'none';
+                }
+            });
+        }
+    });
+});
+
+// Course Enrollment
+document.querySelectorAll('.btn.enroll, .btn.premium-enroll').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const courseTitle = btn.closest('.course-card').querySelector('h3').textContent;
+        if (btn.classList.contains('premium-enroll')) {
+            alert(`You've enrolled in the premium course: ${courseTitle}`);
+        } else {
+            alert(`You've enrolled in the free course: ${courseTitle}`);
+        }
+    });
 });
 
 // Set dark theme by default
 document.documentElement.setAttribute('data-theme', 'dark');
-
-// Add some basic CSS for toast notifications
-const toastCSS = document.createElement('style');
-toastCSS.textContent = `
-.toast {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 24px;
-    border-radius: 4px;
-    color: white;
-    font-weight: 500;
-    z-index: 10000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    max-width: 90%;
-    text-align: center;
-}
-.toast.show {
-    opacity: 1;
-}
-.toast-success {
-    background-color: #10b981;
-}
-.toast-error {
-    background-color: #ef4444;
-}
-.toast-info {
-    background-color: #3b82f6;
-}
-`;
-document.head.appendChild(toastCSS);
